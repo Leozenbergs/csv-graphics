@@ -1,9 +1,10 @@
-# vue-prevision
+# CSV Uploadr-fe
 
-Para iniciar a aplicação acesse os links a seguir:
+## Para iniciar a aplicação acesse os links a seguir:
 
 - [Link para o frontend no Heroku](http://csvuploadr.herokuapp.com/)
 - [Link para o backend no Heroku](http://csvuploadr-be.herokuapp.com/api/posts)
+
 
 ## Project setup
 ```
@@ -24,11 +25,3 @@ npm run build
 ```
 npm run test
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
