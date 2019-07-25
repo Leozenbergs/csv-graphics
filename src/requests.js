@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/api/posts/';
+const url = 'https://csvuploadr-be.herokuapp.com/api/posts';
 
 class Requests{
     // Gets
