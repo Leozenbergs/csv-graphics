@@ -1,10 +1,11 @@
 # CSV Uploadr-fe
 
-## Para iniciar a aplicação acesse os links a seguir:
+## Para iniciar a aplicação acesse os links a seguir: 
 
 - [Link para o frontend no Heroku](http://csvuploadr.herokuapp.com/)
 - [Link para o backend no Heroku](http://csvuploadr-be.herokuapp.com/api/posts)
 
+Obs: é necessário acessar ambos os links para que o banco se inicie 
 
 ## Project setup
 ```
