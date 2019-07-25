@@ -1,6 +1,9 @@
 # vue-prevision
 
-[Link para versão upada no Heroku](http://csvuploadr.herokuapp.com/)
+Para iniciar a aplicação acesse os links a seguir:
+
+- [Link para o frontend no Heroku](http://csvuploadr.herokuapp.com/)
+- [Link para o backend no Heroku](http://csvuploadr-be.herokuapp.com/api/posts)
 
 ## Project setup
 ```
