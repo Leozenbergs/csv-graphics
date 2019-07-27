@@ -1,23 +1,27 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Requests from '../requests'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    historico:[]
+    data: new Array()
   },
   mutations: {
-    change(state, historico) {
-        state.historico = historico
-    },
-    add(state, historico){
-        state.historico.push(historico);
+    setData(state, payload){
+      state.data = payload.post
+    }
+  },
+  actions: {
+    async setData (context) {
+      const req = await Requests.getPosts();
+      context.commit('setData', {post: req})
     }
   },
   getters: {
-    getHistorico: state => {
-        return state.historico
+    compId: (state) => {
+      return state.data
     }
   }
 })

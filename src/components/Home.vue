@@ -18,7 +18,7 @@
         <form enctype="multipart/form-data">
           <v-flex xs12 text-xs-center mb-2>            
             <v-btn color="blue" class="white--text" @click.native="openFileDialog" prepend-icon='attach_file'>
-              Escoler arquivo
+              Escolher arquivo
             </v-btn>
           </v-flex>
 					<input type="file" id="file-upload" @change="showFile" style="display:none" accept=".csv" required>
@@ -51,10 +51,10 @@
       return {
         aux: 0,
         histCont: 0,
-        getVal: 0,
-        putVal: 0,
-        postVal: 0,
-        delVal: 0,
+        gets: [],
+        puts: [],
+        posts: [],
+        dels: []
         
       }
     },
@@ -84,46 +84,60 @@
       },
       loadChart(){
         let ctx = document.getElementById('myChart').getContext('2d');
-        let chart = new Chart(ctx, {
-          // The type of chart we want to create
-           type: 'bar',
-          data: {
-            labels: ['Actions'],
-            datasets: [{
-              label: 'Get',
-              backgroundColor: "#000080",
-              data: [this.getVal]
-            }, {
-              label: 'Put',
-              backgroundColor: "#d3d3d3",
-              data: [this.putVal]
-            }, {
-              label: 'Post',
-              backgroundColor: "#add8e6",
-              data: [this.postVal]
-            },{
-              label: 'Delete',
-              backgroundColor: "#777",
-              data: [this.delVal]
-            }]
-          },
 
-          options: {
-            legend: {
-              display: true,
-              position: 'bottom',
-              labels: {
-                fontColor: "#000080",
-              }
-            },
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
+        let getInfo = {
+          label: 'Get',
+          data: this.gets,
+          backgroundColor: '#2b6cee',
+          borderWidth: 0,
+          yAxisID: "y-axis-density"
+        };
+
+        let putInfo = {
+          label: 'Put',
+          data: this.puts,
+          backgroundColor: '#2bee4e',
+          borderWidth: 0,
+          yAxisID: "y-axis-density"
+        };
+
+        let postInfo = {
+          label: 'Post',
+          data: this.posts,
+          backgroundColor: '#ee932b',
+          borderWidth: 0,
+          yAxisID: "y-axis-density"
+        };
+
+        let delInfo = {
+          label: 'Delete',
+          data: this.dels,
+          backgroundColor: '#ddd',
+          borderWidth: 0,
+          yAxisID: "y-axis-density"
+        };
+
+        let chartInfo = {
+          labels: ["Empresa1", "Empresa2", "Empresa3"],
+          datasets: [getInfo, putInfo, postInfo, delInfo]
+        };
+
+        let chartOptions = {
+          scales: {
+            xAxes: [{
+              barPercentage: 1,
+              categoryPercentage: 0.6
+            }],
+            yAxes: [{
+              id: "y-axis-density"
+            }]
           }
+        };
+
+        let barChart = new Chart(ctx, {
+          type: 'bar',
+          data: chartInfo,
+          options: chartOptions
         });
         
       },
@@ -154,10 +168,55 @@
         });
         
         this.loadChart();
+      },
+      setChartValues(){
+        let contGet1 = 0;
+        let contGet2 = 0;
+        let contGet3 = 0;
+        let contPut1 = 0;
+        let contPut2 = 0;
+        let contPut3 = 0;
+        let contPost1 = 0;
+        let contPost2 = 0;
+        let contPost3 = 0;
+        let contDel1 = 0;
+        let contDel2 = 0;
+        let contDel3 = 0;
+        this.$store.state.data.filter((each) => {
+          switch(each.company_id){
+            case '1':              
+              (each.action == "get")? contGet1++: ((each.action == 'put')? contPut1++:((each.action == 'post')? contPost1++: ((each.action == 'delete')? contDel1++: null)));
+              break;
+            case '2':
+              (each.action == "get")? contGet2++: ((each.action == 'put')? contPut2++:((each.action == 'post')? contPost2++: ((each.action == 'delete')? contDel2++: null)));     
+              break;
+            case '3':
+              (each.action == "get")? contGet3++: ((each.action == 'put')? contPut3++:((each.action == 'post')? contPost3++: ((each.action == 'delete')? contDel3++: null)));                   
+              break;
+          }        
+        });
+        this.gets.push(contGet1);
+        this.gets.push(contGet2);
+        this.gets.push(contGet3);
+        this.puts.push(contPut1);
+        this.puts.push(contPut2);
+        this.puts.push(contPut3);
+        this.posts.push(contPost1);
+        this.posts.push(contPost2);
+        this.posts.push(contPost3);
+        this.dels.push(contDel1);
+        this.dels.push(contDel2);
+        this.dels.push(contDel3);
+      }
+    },
+    computed: {
+      getById(){
+        return this.$store.getters.compId;
       }
     },
     async created(){  
-          
+      await this.$store.dispatch('setData');   
+      this.setChartValues();
       this.chartData();
       
     }

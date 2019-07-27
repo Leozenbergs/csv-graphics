@@ -33,7 +33,7 @@
           <v-list-tile class="list--item"
           >
             <v-list-tile-action>
-              <v-icon>dashboard</v-icon>
+              <v-icon>home</v-icon>
             </v-list-tile-action>
 
             <v-list-tile-content>
@@ -44,7 +44,35 @@
           </v-list-tile>
         </router-link>
 
-        <router-link to='/historico'>
+        <router-link to='/ultimas'>
+          <v-list-tile class="list--item">
+            <v-list-tile-action>
+              <v-icon>list</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Ultimas ações
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </router-link>
+
+        <router-link to='/destaque'>
+          <v-list-tile class="list--item">
+            <v-list-tile-action>
+              <v-icon>dashboard</v-icon>
+            </v-list-tile-action>
+
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Usuário destaque
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </router-link>
+
+        <router-link to='/favoritos'>
           <v-list-tile class="list--item">
             <v-list-tile-action>
               <v-icon>question_answer</v-icon>
@@ -52,11 +80,12 @@
 
             <v-list-tile-content>
               <v-list-tile-title>
-                Historico
+                Mais acessados
               </v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </router-link>
+
         </v-list>
     </v-navigation-drawer>
   
@@ -106,5 +135,12 @@ export default {
   }
   .list--item:hover{
     background: #dcdcdc;
+  }
+  .title-line{
+    width: 20%;
+    height: 2px;
+    background: #2B4996;
+    border: none;
+    margin: 10px auto;
   }
 </style>

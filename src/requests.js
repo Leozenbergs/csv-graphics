@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const url = 'https://csvuploadr-be.herokuapp.com/api/posts';
+// const url = 'http://localhost:5000/api/posts/';
 
 class Requests{
     // Gets
@@ -9,10 +10,10 @@ class Requests{
             try {
                 const res = await axios.get(url);
                 const data = res.data;
+                // console.log(data);
                 resolve(
                     data.map(post => ({
-                        ...post,
-                        createdAt: new Date(post.date_time)
+                        ...post
                     }))
                 );
             } catch(err){
